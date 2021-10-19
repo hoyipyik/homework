@@ -123,37 +123,6 @@ void question3_1(){
     outfile.close();
 }
 
-void question3_1_legacy(){
-    const int n = 1;
-    double array[n][1000];
-    for (int i = 0; i < N; i++){
-        system("./test3.1.sh");
-        ifstream file;
-        file.open("random.txt");
-        for (int j = 0; j < 1000; j++){
-            file >> array[i][j];
-        }
-        file.close();
-    }
-    
-    double data[1000] ={0};
-
-    
-    for (size_t j = 0; j < 1000; j++){
-        for (size_t i = 0; i < N; i++)
-        {
-            array[i][j] -=  0.5;
-            data[j] += array[i][j];
-            data[j] *= pow(12/N, 0.5);
-        }
-    }
-
-    for (size_t i = 0; i < 1000; i++)
-    {
-        cout << data[i] <<endl;
-    }
-}
-
 void question3_2(){
     int count = 10000;
     double data[count] = {0};
