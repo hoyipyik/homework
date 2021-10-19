@@ -169,9 +169,7 @@ void question3_2(){
     {
         file << data[i] <<endl;
     }
-
 }
-
 
 /**
  * Question 4
