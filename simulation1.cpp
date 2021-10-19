@@ -192,11 +192,10 @@ void question4(){
         double b[3]= {1/4.0, 1.0, 1/2.0};
         for (size_t j = 0; j < 3; j++)
         {
-            holder += p[j]*(1/b[j])*((x[i]-a[j])/b[j]);
+            holder += p[j]*(x[i]*b[j]+a[j]);
             // cout << (x[i]-a[j])/b[j] <<endl;
-            result[i] += holder;
+            result[i] = holder;
         }
-        
     }
     ofstream file;
     file.open("q4.txt");
@@ -226,7 +225,7 @@ void question5(){
             holder += x;
             // cout << x <<endl;
             if(holder>1) {
-                cout << j <<endl;
+                // cout << j <<endl;
                 k[i] = j + 1;
                 break;
             }
