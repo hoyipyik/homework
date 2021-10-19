@@ -79,14 +79,14 @@ void question1_3(){
 
 double ParotoFunction(double a, double b, double x){
     double y;
-    y = pow((a*pow(b, a)/x),(1/(a+1)));
+    y = b/(pow((1-x),1/a));
     return y;
 }
 
 void question2(){
-    int count = 100000;
-    double a = 10.02;
-    double b = 1092;
+    long long count = 100000;
+    double a = 3;
+    double b = 1;
     ofstream outfile;
     outfile.open("q2.txt");
     for (size_t i = 0; i < count; i++)
