@@ -83,8 +83,8 @@ double ParotoFunction(double a, double b, double x){
 
 void question2(){
     long long count = 100000;
-    double a = 3;
-    double b = 1;
+    double a = 10.34;
+    double b = 1893;
     ofstream outfile;
     outfile.open("q2.txt");
     for (size_t i = 0; i < count; i++)

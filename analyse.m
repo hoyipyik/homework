@@ -1,4 +1,4 @@
-present=importdata('q5.txt');
+present=importdata('q2.txt');
 E=mean(present);
 D=var(present);
 cdfplot(present);
