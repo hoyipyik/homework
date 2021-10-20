@@ -40,22 +40,25 @@ void question1_2(){
 }
 
 void question1_3(){
-    unsigned long long m1 = pow(2, 32) - 209.0;
-    unsigned long long  m2 = pow(2, 32) - 22853.0;
-    int x[1000] = {0};
-    int y[1000] = {0};
+    ofstream outfile;
+    outfile.open("q1_3.txt");
+    const unsigned long long m1 = pow(2, 32) - 209.0;
+    const unsigned long long  m2 = pow(2, 32) - 22853.0;
+    int count = 100000;
+    unsigned long long x[count] = {0};
+    unsigned long long y[count] = {0};
     x[0] = 4;x[1]= 2;x[2]=7;
     y[0] = 8;y[1]= 5;y[2]=6;
-    double data[1000] = {0};
+    double data[count] = {0};
 
-    for (size_t i = 3; i < 1000; i++)
+    for (size_t i = 3; i < count; i++)
     {
         x[i] = (1403580*x[i-2] - 810728*x[i-3])%m1;
         y[i] = (527612*y[i-1] - 1370589*y[i-3])%m2;
         // cout<<x[i]<<y[i]<<endl;
     }
 
-    for (size_t i = 0; i < 1000; i++)
+    for (size_t i = 0; i < count; i++)
     {
         if (x[i]<=y[i])
         {
@@ -63,14 +66,9 @@ void question1_3(){
         }else{
             data[i] = (double)(x[i]-y[i])/(double)(m1+1);
         }
-    }
-
-    ofstream outfile;
-    outfile.open("q1_3.txt");
-    for (size_t i = 0; i < 1000; i++)
-    {
         outfile << data[i] <<endl;
     }
+    outfile.close();
 }
 
 /**
@@ -124,6 +122,8 @@ void question3_1(){
 }
 
 void question3_2(){
+    ofstream file;
+    file.open("q3_2.txt");
     int count = 10000;
     double data[count] = {0};
     for (size_t i = 0; i < count; i++)
@@ -131,13 +131,9 @@ void question3_2(){
         double rd1 = genrand_real2();
         double rd2 = genrand_real2();
         data[i] = sqrt(-2*log(rd1))*cos(2*3.14159265*rd2);
-    }
-    ofstream file;
-    file.open("q3_2.txt");
-    for (size_t i = 0; i < count; i++)
-    {
         file << data[i] <<endl;
     }
+    file.close();
 }
 
 /**
@@ -148,29 +144,28 @@ void question4(){
     int count = 10000;
     double x[count] = {0};
     double result[count] = {0};
-    for (size_t i = 0; i < count; i++)
-    {
-        double holder = 0;
-        double rd1 = genrand_real2();
-        double rd2 = genrand_real2();
-        x[i] = sqrt(-2*log(rd1))*cos(2*3.14159265*rd2);
-        double p[3] = {1/2.0, 1/3.0, 1/6.0};
-        double a[3] = {-1.0, 0.0, 1.0};
-        double b[3]= {1/4.0, 1.0, 1/2.0};
-        for (size_t j = 0; j < 3; j++)
-        {
-            holder += p[j]*(x[i]*b[j]+a[j]);
-            // cout << (x[i]-a[j])/b[j] <<endl;
-            result[i] = holder;
-        }
-    }
     ofstream file;
     file.open("q4.txt");
     for (size_t i = 0; i < count; i++)
     {
+        double rd1 = genrand_real2();
+        double rd2 = genrand_real2();
+        double judgeFlag = genrand_real2();
+        x[i] = sqrt(-2*log(rd1))*cos(2*3.14159265*rd2);
+        double p[3] = {1/2.0, 1/3.0, 1/6.0};
+        double a[3] = {-1.0, 0.0, 1.0};
+        double b[3]= {1/4.0, 1.0, 1/2.0};
+        if (judgeFlag<p[0])
+        {
+            result[i] = x[i]*b[0]+a[0];
+        }else if (judgeFlag>p[0] && judgeFlag<(p[0]+p[1]))
+        {
+            result[i] = x[i]*b[1]+a[1];
+        }else{
+            result[i] = x[i]*b[2]+a[2];
+        }
         file << result[i] <<endl;
-    } 
-
+    }
     file.close();
 }
 
@@ -179,6 +174,8 @@ void question4(){
  */
 
 void question5(){
+    ofstream outfile;
+    outfile.open("q5.txt");
     double lambda = 2.0;
     int count = 10000;
     int k[count] = {0};
@@ -197,13 +194,6 @@ void question5(){
                 break;
             }
         }
-        
-    }
-
-    ofstream outfile;
-    outfile.open("q5.txt");
-    for (size_t i = 0; i < count; i++)
-    {
         outfile << k[i] <<endl;
     }
     outfile.close();
